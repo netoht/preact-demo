@@ -12,7 +12,12 @@ This is a basic starter project to create React based apps.
 
 Just it.
 
+# References
 
--- Flow no babel? - https://flow.org/
-http://babeljs.io/docs/usage/babelrc#use-via-packagejson
-https://github.com/keuller/basic-starter
+- https://github.com/keuller/basic-starter
+- https://webpack.github.io/
+- http://babeljs.io/
+- https://www.browsersync.io/
+- https://preactjs.com/
+- https://git.io/preact-router
+- https://flow.org/

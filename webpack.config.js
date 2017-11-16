@@ -11,33 +11,14 @@ const env = process.env.NODE_ENV || 'dev'
 const extractAPP  = new ExtractTextPlugin('app.css'),
       extractSCSS = new ExtractTextPlugin('bulma.css')
 
-const prodPlugins = [
+const commonPlugins = [
+    new CleanWebpackPlugin('./dist'),
     extractAPP,
-    new webpack.DefinePlugin({
-        'process.env':{
-            'NODE_ENV': "'production'"
-        }
-    }),
-    new webpack.ProvidePlugin({
-        'React': 'react'
-    }),
-    new webpack.optimize.UglifyJsPlugin({
-        compress: {
-            warnings: false
-        }
-    }),
-    new webpack.LoaderOptionsPlugin({
-        minimize: true
-    })
+    extractSCSS
 ]
 
 const devPlugins = [
-    new CleanWebpackPlugin('./dist'),
-    extractAPP,
-    extractSCSS,
-    new webpack.ProvidePlugin({
-        'React': 'react'
-    }),
+    ...commonPlugins,
     new webpack.optimize.CommonsChunkPlugin({
         name: 'vendor'
     }),
@@ -50,10 +31,27 @@ const devPlugins = [
     new webpack.NoEmitOnErrorsPlugin()
 ]
 
+const prodPlugins = [
+    ...commonPlugins,
+    new webpack.DefinePlugin({
+        'process.env': {
+            'NODE_ENV': "'production'"
+        }
+    }),
+    new webpack.optimize.UglifyJsPlugin({
+        compress: {
+            warnings: false
+        }
+    }),
+    new webpack.LoaderOptionsPlugin({
+        minimize: true
+    })
+]
+
 module.exports = {
     entry: {
         app: addPath(__dirname, 'src', 'index.jsx'),
-        vendor: ['react', 'react-dom']
+        vendor: ['preact', 'preact-router', 'history']
     },
 
     output: {
