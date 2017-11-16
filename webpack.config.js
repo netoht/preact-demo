@@ -9,12 +9,14 @@ const addPath = (...args) => path.join(...args)
 const env = process.env.NODE_ENV || 'dev'
 
 const extractAPP  = new ExtractTextPlugin('app.css'),
-      extractSCSS = new ExtractTextPlugin('bulma.css')
+      extractSCSSBulma = new ExtractTextPlugin('bulma.css'),
+      extractSCSSFontAwesome = new ExtractTextPlugin('font-awesome.css')
 
 const commonPlugins = [
     new CleanWebpackPlugin('./dist'),
     extractAPP,
-    extractSCSS
+    extractSCSSBulma,
+    extractSCSSFontAwesome
 ]
 
 const devPlugins = [
@@ -80,7 +82,19 @@ module.exports = {
                 exclude: /node_modules/
             }, {
                 test: /\.sass/,
-                loader: extractSCSS.extract(['css-loader', 'sass-loader'])
+                loader: extractSCSSBulma.extract(['css-loader', 'sass-loader'])
+            }, {
+                test: /\.scss/,
+                loader: extractSCSSFontAwesome.extract(['css-loader', 'sass-loader'])
+            }, {
+                test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+                loader: 'url-loader?limit=10000&mimetype=application/font-woff'
+            }, {
+                test: /\.(ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+                loader: 'file-loader'
+            }, {
+                test: /\.jpe?g$|\.ico$|\.gif$|\.png$|\.svg$/,
+                loader: 'file-loader?name=[name].[ext]'
             }
         ]
     },
