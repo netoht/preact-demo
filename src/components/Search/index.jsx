@@ -1,10 +1,13 @@
 'use strict'
 import { h } from 'preact'
+import SearchToolbar from './SearchToolbar'
+import SearchResult from './SearchResult'
 
 const Search = () => (
-    <div>
-        <h2>Search</h2>
-    </div>
+  <div>
+    <SearchToolbar />
+    <SearchResult />
+  </div>
 )
 
 export default Search

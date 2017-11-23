@@ -3,17 +3,23 @@ import { h } from 'preact'
 import { Link } from 'preact-router/match'
 
 const Menu = () => (
-  <nav class="navbar is-warning">
+  <nav class="menu navbar is-warning">
     <div class="container">
       <div class="navbar-brand">
         <Link href="/" class="navbar-item">
           <strong>ExampleApp</strong>
         </Link>
         <Link href="/search" className="navbar-item">
-          <i class="fa fa-search" aria-hidden="true"></i> Search
+          <span class="icon">
+            <i class="fa fa-search"></i>
+          </span>
+          <span>Search</span>
         </Link>
         <Link href="/about" className="navbar-item">
-          <i class="fa fa-info" aria-hidden="true"></i> About
+        <span class="icon">
+            <i class="fa fa-info"></i>
+          </span>
+          <span>About</span>
         </Link>
       </div>
     </div>

@@ -2,7 +2,7 @@
 import { h } from 'preact'
 
 const About = () => (
-    <div>
+    <div class="box container">
         <h2>About</h2>
     </div>
 )

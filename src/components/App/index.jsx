@@ -7,9 +7,10 @@ import Menu from '../Menu'
 import Home from '../Home'
 import About from '../About'
 import Search from '../Search'
-import './App.css'
-import './App.sass'
+import 'font-awesome/scss/font-awesome.scss'
+import '../../assets/sass/Bulma.sass'
 import '../../assets/images/favicon.png'
+import './App.sass'
 
 const App = (props) => (
   <div>
